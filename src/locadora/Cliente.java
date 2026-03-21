@@ -20,6 +20,43 @@ public class Cliente {
 		carrosAlugados.add(locacao);
 	}
 
+	private double valorDeUmaLocacao(Locacao locacao) {
+		double valorLocacao = 0.0;
+		
+		switch(locacao.getCarro().getCodigoDoPreco()) {
+			case Automovel.BASICO: // R$ 90.00 por dia
+				valorLocacao = locacao.getDiasAlugado() * 90.0;
+				break;
+
+			case Automovel.FAMILIA: // R$ 130.00 por dia
+				valorLocacao = locacao.getDiasAlugado() * 130.0;
+				break;
+
+			case Automovel.LUXO: // R$ 200.00 por dia
+				valorLocacao = locacao.getDiasAlugado() * 200.0;
+				
+				// Adiciona um desconto de 10% se alugar o carro por mais de 4 dias
+				if(locacao.getDiasAlugado() > 4) {
+					valorLocacao *= 0.9;
+				}
+				break;
+		} 
+
+		return valorLocacao;
+	}
+
+	private double adicionaPontosDeLocadorFrequente(Locacao locacao) {
+		double pontos = 1;
+		
+		// adiciona bonus para locação de um carro de luxo por pelo menos 3 dias
+		if(locacao.getCarro().getCodigoDoPreco() == Automovel.LUXO &&
+			locacao.getDiasAlugado() > 2) {
+			pontos += 2;
+		}
+		
+		return pontos;
+	}
+
 	public String extrato() {
 		final String fimDeLinha = System.getProperty("line.separator");
 		double valorTotal = 0.0;
@@ -32,38 +69,11 @@ public class Cliente {
 		resultado += String.format("=== ==================== ===== ========= ==========="+fimDeLinha);
 
 		while(locacoes.hasNext()) {
-			double valorCorrente = 0.0;
 			Locacao cada = locacoes.next();
-
-			// determina valores para cada linha
-			switch(cada.getCarro().getCodigoDoPreco()) {
-			case Automovel.BASICO: // R$ 90.00 por dia
-				valorCorrente += cada.getDiasAlugado() * 90.0;
-				break;
-
-			case Automovel.FAMILIA: // R$ 130.00 por dia
-				valorCorrente += cada.getDiasAlugado() * 130.0;
-				break;
-
-			case Automovel.LUXO: // R$ 200.00 por dia
-				valorCorrente += cada.getDiasAlugado() * 200.0;
-				
-				// Adiciona um desconto de 10% se alugar o carro por mais de 4 dias
-				if(cada.getDiasAlugado() > 4) {
-					valorCorrente *= 0.9;
-				}
-				break;
-
-
-			} //switch
+			double valorCorrente = valorDeUmaLocacao(cada);
 
 			// trata de pontos de locador frequente
-			pontosDeLocadorFrequente++;
-			// adiciona bonus para locação de um carro de luxo por pelo menos 3 dias
-			if(cada.getCarro().getCodigoDoPreco() == Automovel.LUXO &&
-				cada.getDiasAlugado() > 2) {
-				pontosDeLocadorFrequente+=2;
-			}
+			pontosDeLocadorFrequente += adicionaPontosDeLocadorFrequente(cada);
 
 			// mostra valores para esta locação
 			sequencia++;
@@ -74,7 +84,7 @@ public class Cliente {
 
 		// adiciona rodapé
 		resultado += "====================================================" + fimDeLinha;
-		resultado += String.format("Valor Acumulado em di�rias............:  R$ %8.2f" + fimDeLinha, valorTotal);
+		resultado += String.format("Valor Acumulado em diárias............:  R$ %8.2f" + fimDeLinha, valorTotal);
 		resultado += "Voce acumulou " + pontosDeLocadorFrequente +
               " pontos de locador frequente";
 
