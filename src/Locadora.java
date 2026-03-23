@@ -38,7 +38,7 @@ public class Locadora {
 		
 		c1.adicionaLocacao(new Locacao(new Automovel("Toyota Corolla xEi", 2021, "PLN0525", Automovel.LUXO), 10));
 		c1.adicionaLocacao(new Locacao(new Automovel("Fiat Mobi", 2021, "JPA2464", Automovel.BASICO), 2));
-		c1.adicionaLocacao(new Locacao(new Automovel("BMW S�rie 7", 2022, "UBA0808", Automovel.LUXO), 30));
+		c1.adicionaLocacao(new Locacao(new Automovel("BMW Série 7", 2022, "UBA0808", Automovel.LUXO), 30));
 		c1.adicionaLocacao(new Locacao(new Automovel("Fiat Siena", 2023, "ABC0001", Automovel.FAMILIA), 4));
 		c1.adicionaLocacao(new Locacao(new Automovel("Honda HRV", 2024, "KJD9745", Automovel.FAMILIA), 10));
 		c1.adicionaLocacao(new Locacao(new Automovel("Volkswagen Gol", 2024, "JJJ0055", Automovel.BASICO), 3));

@@ -20,47 +20,34 @@ public class Cliente {
 		carrosAlugados.add(locacao);
 	}
 
-	private double valorDeUmaLocacao(Locacao locacao) {
-		double valorLocacao = 0.0;
-		
-		switch(locacao.getCarro().getCodigoDoPreco()) {
-			case Automovel.BASICO: // R$ 90.00 por dia
-				valorLocacao = locacao.getDiasAlugado() * 90.0;
-				break;
+	public double getValorTotal() {
+		double valorTotal = 0.0;
+		Iterator<Locacao> locacoes = carrosAlugados.iterator();
 
-			case Automovel.FAMILIA: // R$ 130.00 por dia
-				valorLocacao = locacao.getDiasAlugado() * 130.0;
-				break;
+		while(locacoes.hasNext()) {
+			Locacao cada = locacoes.next();
+			valorTotal += cada.valorDeUmaLocacao();
 
-			case Automovel.LUXO: // R$ 200.00 por dia
-				valorLocacao = locacao.getDiasAlugado() * 200.0;
-				
-				// Adiciona um desconto de 10% se alugar o carro por mais de 4 dias
-				if(locacao.getDiasAlugado() > 4) {
-					valorLocacao *= 0.9;
-				}
-				break;
-		} 
+		} // while
 
-		return valorLocacao;
+		return valorTotal;
 	}
 
-	private double adicionaPontosDeLocadorFrequente(Locacao locacao) {
-		double pontos = 1;
-		
-		// adiciona bonus para locação de um carro de luxo por pelo menos 3 dias
-		if(locacao.getCarro().getCodigoDoPreco() == Automovel.LUXO &&
-			locacao.getDiasAlugado() > 2) {
-			pontos += 2;
-		}
-		
-		return pontos;
+	public int getPontosTotaisDeAlugadorFrequente() {
+		int pontosDeLocadorFrequente = 0;
+		Iterator<Locacao> locacoes = carrosAlugados.iterator();
+
+		while(locacoes.hasNext()) {
+			Locacao cada = locacoes.next();
+			pontosDeLocadorFrequente += cada.adicionaPontosDeLocadorFrequente();
+
+		} // while
+
+		return pontosDeLocadorFrequente;
 	}
 
 	public String extrato() {
 		final String fimDeLinha = System.getProperty("line.separator");
-		double valorTotal = 0.0;
-		int pontosDeLocadorFrequente = 0;
 		int sequencia = 0;
 
 		Iterator<Locacao> locacoes = carrosAlugados.iterator();
@@ -70,25 +57,18 @@ public class Cliente {
 
 		while(locacoes.hasNext()) {
 			Locacao cada = locacoes.next();
-			double valorCorrente = valorDeUmaLocacao(cada);
-
-			// trata de pontos de locador frequente
-			pontosDeLocadorFrequente += adicionaPontosDeLocadorFrequente(cada);
 
 			// mostra valores para esta locação
 			sequencia++;
-			resultado += String.format("%02d. %-20s  %4d    %2d     R$ %8.2f"+fimDeLinha,sequencia, cada.getCarro().getDescricao(),cada.getCarro().getAno(), cada.getDiasAlugado(), valorCorrente );
-			valorTotal += valorCorrente;
-
+			resultado += String.format("%02d. %-20s  %4d    %2d     R$ %8.2f"+fimDeLinha,sequencia, cada.getCarro().getDescricao(),cada.getCarro().getAno(), cada.getDiasAlugado(), cada.valorDeUmaLocacao() );
 		} // while
 
 		// adiciona rodapé
 		resultado += "====================================================" + fimDeLinha;
-		resultado += String.format("Valor Acumulado em diárias............:  R$ %8.2f" + fimDeLinha, valorTotal);
-		resultado += "Voce acumulou " + pontosDeLocadorFrequente +
+		resultado += String.format("Valor Acumulado em diárias............:  R$ %8.2f" + fimDeLinha, getValorTotal());
+		resultado += "Voce acumulou " + getPontosTotaisDeAlugadorFrequente() +
               " pontos de locador frequente";
 
 		return resultado;
 	}
-
 }
