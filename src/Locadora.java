@@ -20,6 +20,7 @@ import locadora.Automovel;
 import locadora.Cliente;
 import locadora.Locacao;
 import locadora.Classificacao;
+import locadora.GeradorExtratoTexto;
 
 // Usando a classe cliente do pacote "refactoring1" : Lista 1.2.1
 //import refactoring1.Cliente;
@@ -44,7 +45,7 @@ public class Locadora {
 		c1.adicionaLocacao(new Locacao(new Automovel("Honda HRV", 2024, "KJD9745", Classificacao.FAMILIA), 10));
 		c1.adicionaLocacao(new Locacao(new Automovel("Volkswagen Gol", 2024, "JJJ0055", Classificacao.BASICO), 3));
 
-		System.out.println(c1.extrato());
+		System.out.println(c1.extrato(new GeradorExtratoTexto()));
 		
 	}
 }
