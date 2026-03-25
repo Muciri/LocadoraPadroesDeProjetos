@@ -16,11 +16,11 @@
 //import refactoring3.*;
 
 // Tarefa refactoring4
-import locadora.Automovel;
-import locadora.Cliente;
-import locadora.Locacao;
-import locadora.Classificacao;
-import locadora.GeradorExtratoTexto;
+import locadora.alugavel.Automovel;
+import locadora.classificacao.Classificacao;
+import locadora.cliente.Cliente;
+import locadora.cliente.Locacao;
+import locadora.extrato.GeradorExtratoTexto;
 
 // Usando a classe cliente do pacote "refactoring1" : Lista 1.2.1
 //import refactoring1.Cliente;

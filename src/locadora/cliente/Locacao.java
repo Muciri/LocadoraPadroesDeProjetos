@@ -1,4 +1,6 @@
-package locadora;
+package locadora.cliente;
+
+import locadora.alugavel.Alugavel;
 
 public class Locacao {
 	private Alugavel carro;

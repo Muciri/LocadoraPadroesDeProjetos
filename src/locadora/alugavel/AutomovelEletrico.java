@@ -1,4 +1,4 @@
-package locadora;
+package locadora.alugavel;
 
 public class AutomovelEletrico extends Automovel {
     private double autonomiaBateria;

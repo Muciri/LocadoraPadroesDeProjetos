@@ -1,8 +1,10 @@
-package locadora;
+package locadora.cliente;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import locadora.extrato.GeradorExtrato;
 
 public class Cliente {
 	private String nome;

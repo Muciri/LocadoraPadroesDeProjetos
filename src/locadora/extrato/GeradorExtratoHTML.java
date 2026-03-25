@@ -1,6 +1,8 @@
-package locadora;
+package locadora.extrato;
 
 import java.util.Iterator;
+
+import locadora.cliente.Locacao;
 
 public class GeradorExtratoHTML implements GeradorExtrato{
     

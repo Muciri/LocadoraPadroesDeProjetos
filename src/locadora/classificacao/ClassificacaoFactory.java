@@ -1,7 +1,7 @@
-package locadora;
+package locadora.classificacao;
 
 public class ClassificacaoFactory {
-    static Classificacao createClassificacao(int codigoDoPreco) {
+    public static Classificacao createClassificacao(int codigoDoPreco) {
 		switch (codigoDoPreco) {
 			case 1:
 				return new Familia();

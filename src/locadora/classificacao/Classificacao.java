@@ -1,4 +1,4 @@
-package locadora;
+package locadora.classificacao;
 
 public abstract class Classificacao {
 	public static final int BASICO = 0;   // Carros hatch
@@ -8,9 +8,9 @@ public abstract class Classificacao {
     protected int pontoSimples = 1;
     protected int pontoExtra = 2;
 
-    abstract double valorDeUmaLocacao(int diasAlugado);
-    abstract int getCodigoDoPreco();
-    int getPontosDeAlugadorFrequente(int diasAlugado){
+    public abstract double valorDeUmaLocacao(int diasAlugado);
+    public abstract int getCodigoDoPreco();
+    public int getPontosDeAlugadorFrequente(int diasAlugado){
         return this.pontoSimples;
     };
 }

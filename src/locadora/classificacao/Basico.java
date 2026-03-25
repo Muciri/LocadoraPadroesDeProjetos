@@ -1,4 +1,4 @@
-package locadora;
+package locadora.classificacao;
 
 public class Basico extends Classificacao {
     @Override

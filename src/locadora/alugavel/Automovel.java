@@ -1,4 +1,7 @@
-package locadora;
+package locadora.alugavel;
+
+import locadora.classificacao.Classificacao;
+import locadora.classificacao.ClassificacaoFactory;
 
 public class Automovel implements Alugavel{
 	private String descricao;
