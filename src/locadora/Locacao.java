@@ -4,7 +4,7 @@ public class Locacao {
 	private Alugavel carro;
 	private int diasAlugado;
 	
-	public Locacao(Automovel carro, int diasAlugado) {
+	public Locacao(Alugavel carro, int diasAlugado) {
 		this.carro = carro;
 		this.diasAlugado = diasAlugado;
 	}
