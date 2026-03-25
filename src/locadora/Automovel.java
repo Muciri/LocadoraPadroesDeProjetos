@@ -29,7 +29,6 @@ public class Automovel implements Alugavel{
 		return this.classificacao.getCodigoDoPreco();
 	}
 
-	
 	public void setCodigoDoPreco(int codigoDoPreco) {
 		this.classificacao = ClassificacaoFactory.createClassificacao(codigoDoPreco);
 	}

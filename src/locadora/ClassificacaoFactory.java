@@ -7,6 +7,8 @@ public class ClassificacaoFactory {
 				return new Familia();
 			case 2:
 				return new Luxo();
+			case 3:
+				return new Premium();
 			default:
 				return new Basico();
 		}
