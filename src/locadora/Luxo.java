@@ -19,9 +19,11 @@ public class Luxo extends Classificacao{
 
     @Override
     public int getPontosDeAlugadorFrequente(int diasAlugado) {
+        int pontos = this.pontoSimples;
+        
         if(diasAlugado > 4) {
-            return 3;
+            pontos += this.pontoExtra;
         }
-        return 1;
+        return pontos;
     }
 }
